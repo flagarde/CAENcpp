@@ -1,0 +1,4 @@
+add_executable(CAENDigitizerException CAENDigitizerException.test.cpp)
+set_target_properties(CAENDigitizerException PROPERTIES RUNTIME_OUTPUT_DIRECTORY "${CMAKE_INSTALL_PREFIX}/test")
+target_link_libraries(CAENDigitizerException PRIVATE DigitizerException PRIVATE doctest_with_main)
+doctest_discover_tests(CAENDigitizerException COMMAND "CAENDigitizerException" ADD_LABELS "CAENDigitizerException tests.")

@@ -1,0 +1,11 @@
+add_library(DigitizerException "CAENDigitizerException.cpp")
+target_include_directories(DigitizerException PUBLIC $<BUILD_INTERFACE:${CMAKE_SOURCE_DIR}/include> PUBLIC $<INSTALL_INTERFACE:${CMAKE_INSTALL_INCLUDEDIR}>)
+target_link_libraries(DigitizerException PRIVATE CAENDigitizer::CAENDigitizer PUBLIC source_location)
+set_target_properties(DigitizerException PROPERTIES PUBLIC_HEADER "${CMAKE_SOURCE_DIR}/include/CAENDigitizerException.hpp")
+install(TARGETS DigitizerException)
+
+add_library(Digitizer "CAENDigitizer.cpp")
+target_include_directories(Digitizer PUBLIC $<BUILD_INTERFACE:${CMAKE_SOURCE_DIR}/include> PUBLIC $<INSTALL_INTERFACE:${CMAKE_INSTALL_INCLUDEDIR}>)
+target_link_libraries(Digitizer PRIVATE CAENDigitizer::CAENDigitizer PUBLIC DigitizerException)
+set_target_properties(Digitizer PROPERTIES PUBLIC_HEADER "${CMAKE_SOURCE_DIR}/include/CAENDigitizer.hpp")
+install(TARGETS Digitizer)
